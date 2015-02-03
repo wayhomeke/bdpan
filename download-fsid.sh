@@ -5,6 +5,22 @@ eval $(cat $BDPAN_HOME/user.conf)
 DL_DIR=$download_dir
 BDPAN_HOME=$(cd $(dirname $BASH_SOURCE) && pwd)
 FAKE_AGENT='User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.38'
+NODEJS_HOME=$BDPAN_HOME/nodejs
+if [[ ! -f "$NODEJS_HOME"/bin/node ]]
+then
+    if uname -i|grep x86_64
+    then
+	echo install nodejs
+	wget http://nodejs.org/dist/v0.10.36/node-v0.10.36-linux-x64.tar.gz
+        tar -zxvf node-v0.10.36-linux-x64.tar.gz
+	ln -s node-v0.10.36-linux-x64.tar.gz nodejs
+    else
+	echo install nodejs
+        wget http://nodejs.org/dist/v0.10.36/node-v0.10.36-linux-x86.tar.gz
+        tar -zxvf node-v0.10.36-linux-x86.tar.gz
+        ln -s node-v0.10.36-linux-x86.tar.gz nodejs
+    fi
+fi
 
 if [[ -z "$DL_DIR" ]]
 then
