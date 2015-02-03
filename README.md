@@ -14,11 +14,11 @@ require  URI::Escape/nodejs/openssl/aria2
 
 配置在user.conf,配置用户名和密码还有下载目录，没有了
 配置好，登录一下：
-sh pan_login.sh
+    sh pan_login.sh
 生成某天的下载列表：
-sh get-day-list.sh 2015-02-02
+    sh get-day-list.sh 2015-02-02
 把列表下载回来：
-for i in $(cat /tmp/dlid.list)
-do
-  sh download-fsid.sh $i
-done
+    for i in $(cat /tmp/dlid.list)
+    do
+          sh download-fsid.sh $i
+    done
