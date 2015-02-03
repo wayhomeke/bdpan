@@ -2,6 +2,8 @@
 
 bdate=$1
 BDPAN_HOME=$(cd $(dirname $BASH_SOURCE) && pwd)
+eval $(cat $BDPAN_HOME/user.conf)
+FAKE_AGENT='User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.38'
 
 curl -c pan.cks -b pan.cks "http://pan.baidu.com/wap/home" -H "Accept-Language: zh-CN,zh;q=0.8,en;q=0.6" -H "$FAKE_AGENT"  -H "Accept: */*"  >/tmp/waphome.html 2>/dev/null
 
