@@ -2,7 +2,7 @@
 BDPAN_HOME=$(cd $(dirname $BASH_SOURCE) && pwd)
 eval $(cat $BDPAN_HOME/user.conf)
 FAKE_AGENT='User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.38'
-if [[  "X$ppass" == "X$ppass" ]]
+if [[  "X$ppass" == "X" ]]
 then
 	puser=$1
 	ppass=$2
