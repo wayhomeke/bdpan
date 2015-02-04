@@ -1,11 +1,13 @@
 #!/bin/bash
 
 fsid=$1
-eval $(cat $BDPAN_HOME/user.conf)
-DL_DIR=$download_dir
 BDPAN_HOME=$(cd $(dirname $BASH_SOURCE) && pwd)
 FAKE_AGENT='User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.38'
 NODEJS_HOME=$BDPAN_HOME/nodejs
+##load config
+eval $(cat $BDPAN_HOME/user.conf)
+DL_DIR=$download_dir
+
 if [[ ! -f "$NODEJS_HOME"/bin/node ]]
 then
     if uname -i|grep x86_64
