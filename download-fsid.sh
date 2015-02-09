@@ -55,7 +55,7 @@ dlk=$(echo |awk '{print "'"$dlink"'"}' 2>/dev/null)
 
 curl "http://pcs.baidu.com/rest/2.0/pcs/file?method=plantcookie&type=ett" -c $BDPAN_HOME/pan.cks  -b $BDPAN_HOME/pan.cks   -H "Accept-Encoding: gzip,deflate,sdch" -H "Host: pcs.baidu.com" -H "Accept-Language: zh-CN,zh;q=0.8,en;q=0.6" -H "$FAKE_AGENT" -H "Accept: image/webp,*/*;q=0.8" -H "Referer: http://pan.baidu.com/wap/view?fsid=$fsid"  -H "Connection: keep-alive" -H "Cache-Control: max-age=0" --compressed
 
-cd $dld
+cd $DL_DIR
 curl -I -b $BDPAN_HOME/pan.cks -H 'User-Agent: netdisk;5.1.0.6;PC;PC-Windows;6.1.7601;WindowsBaiduYunGuanJia' "$dlk" >/tmp/head.log 2>/dev/null
 tdlk=$(cat /tmp/head.log|awk '/Location/{print $2}')
 
@@ -66,4 +66,4 @@ fi
 
 eval $(echo "$tdlk"|sed 's/&/\n/g'|grep fin|sed -e 's/=/="/' -e 's/$/"/')
 
-aria2c -c --file-allocation=none --header="User-Agent: netdisk;5.1.0.6;PC;PC-Windows;6.1.7601;WindowsBaiduYunGuanJia" --load-cookies=$BDPAN_HOME/pan.cks -x5 -s5 "$tdlk"  -o "$fin"
+aria2c -c --file-allocation=none --header="User-Agent: netdisk;5.1.0.6;PC;PC-Windows;6.1.7601;WindowsBaiduYunGuanJia" --load-cookies=$BDPAN_HOME/pan.cks -x5 -s5 "$tdlk"  -o "${DL_DIR}/$fin"
